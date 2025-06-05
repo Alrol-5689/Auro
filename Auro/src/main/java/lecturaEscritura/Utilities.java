@@ -1,35 +1,16 @@
-package utilities;
+package lecturaEscritura;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Lectura {
+public class Utilities {
 
-    public int menuSesion(Scanner sc) {
-        while(true) {
-            System.out.println("\n===========================================================================================================================================\n");
-            System.out.println("1.- Iniciar sesión.");
-            System.out.println("2.- Cerrar sesión.");
-            System.out.println("3.- Salir.");
-            System.out.print("Introduce una opción: ");
-            try {
-                int opcion = Integer.parseInt(sc.next());
-                sc.nextLine();
-                if(opcion > 0 && opcion <4) {
-                    return opcion;
-                } else System.err.println("Error: introduce un número dentro del rango. ");
-            } catch(NumberFormatException e) {
-                System.err.println("Error: introduce un valor numérico. ");
-            }
-        }
-    }
-    
     public int pedirOpcion(Scanner sc, int nOpciones, String mensaje) {
         System.out.print(mensaje);
         while (true) {
             try {
                 int out = Integer.parseInt(sc.nextLine());
-                if(out >= 1 && out <= nOpciones) {
+                if (out >= 1 && out <= nOpciones) {
                     return out;
                 }
                 System.err.println("Por favor, introduce un número entre 1 y " + nOpciones + ":");

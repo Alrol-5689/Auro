@@ -1,19 +1,19 @@
-package box;
+package conductor;
 
 import java.util.Scanner;
 
-import utilities.Lectura;
+import lecturaEscritura.Menus;
 
-public class GestionPrincipal{
+public class GpConductores{
 
     protected Scanner sc = new Scanner(System.in);
     protected Conductor cuentaActiva = null;
-    protected Lectura l = new Lectura();
+    protected Menus menu = new Menus();
     int opcion=0;
 
     public void start() {
 
-        opcion = l.menuSesion(sc);
+        opcion = menu.menuSesion(sc);
         
         switch (opcion) {
             case 1:

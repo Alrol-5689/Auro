@@ -1,4 +1,4 @@
-package box;
+package gestor;
 
 public enum Turno {
 
