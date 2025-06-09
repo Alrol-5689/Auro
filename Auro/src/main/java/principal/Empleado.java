@@ -1,28 +1,19 @@
-package conductor;
+package principal;
 
-import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.HashMap;
-import java.util.Map;
+public abstract class Empleado {
 
-import gestor.Turno;
-
-public class Conductor {
-
-    private String nombre, apellidos, dni, email, direccion;
+    private String nik, nombre, apellidos, dni, email, direccion, pin;
     private int id, telefono;
-    private Map<YearMonth, Turno> historialTurnos;
-    private Map<LocalDate, DiaConductor> historialJornada;
     private static int idSiguiente;
 
-    public Conductor(String nombre, String apellidos, String dni, String emial, String direccion, int telefono, Turno turno) {
+    public Empleado(String nik, String nombre, String apellidos, String dni, String emial, String direccion, int telefono) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.dni = dni;
         this.email = emial;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.historialTurnos = new HashMap<>();
+        this.pin = "1234";
         this.id = ++idSiguiente;
     }
 
@@ -54,7 +45,7 @@ public class Conductor {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Conductor other = (Conductor) obj;
+        Empleado other = (Empleado) obj;
         if (nombre == null) {
             if (other.nombre != null)
                 return false;
@@ -143,36 +134,28 @@ public class Conductor {
         this.telefono = telefono;
     }
 
-    public Map<YearMonth, Turno> getHistorialTurnos() {
-        return historialTurnos;
-    }
-
-    public void setHistorialTurnos(Map<YearMonth, Turno> historialTurnos) {
-        this.historialTurnos = historialTurnos;
-    }
-
-    public void asignarTurno(YearMonth mes, Turno turno){
-        historialTurnos.put(mes, turno);
-    }
-
-    public Map<LocalDate, DiaConductor> getHistorialJornada() {
-        return historialJornada;
-    }
-
-    public void registrarDia(LocalDate dia, DiaConductor d){
-        this.historialJornada.put(dia, d);
-    }
-
-    public void setHistorialJornada(Map<LocalDate, DiaConductor> historialJornada) {
-        this.historialJornada = historialJornada;
-    }
-
     public static int getIdSiguiente() {
         return idSiguiente;
     }
 
     public static void setIdSiguiente(int idSiguiente) {
-        Conductor.idSiguiente = idSiguiente;
+        Empleado.idSiguiente = idSiguiente;
+    }
+
+    public String getNik() {
+        return nik;
+    }
+
+    public void setNik(String nik) {
+        this.nik = nik;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
     }
 
 }

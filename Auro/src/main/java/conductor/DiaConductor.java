@@ -6,8 +6,11 @@ import java.time.YearMonth;
 import java.util.Map;
 import java.util.TreeMap;
 
+import principal.Conductor;
+
 public class DiaConductor {
 
+    private Conductor conductor;
     private Duration conexion, presencia, tareasAux;
     private LocalDate dia;
     private double facturacion;

@@ -63,4 +63,16 @@ public class Utilities {
         }
     }
 
+    public String pedirString(Scanner sc, boolean permitirVacio, String mensaje) {
+        System.out.print(mensaje);
+        while (true) {
+            String input = sc.nextLine();
+            if(permitirVacio || !input.trim().isEmpty()) {
+                return input;
+            }
+            System.err.println("Error. El campo no puede estar vacío. ");
+            System.out.println(mensaje);
+        }
+    }
+
 }
