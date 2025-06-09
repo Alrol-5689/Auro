@@ -10,20 +10,27 @@ import principal.Conductor;
 
 public class DiaConductor {
 
+    // Atributos
+
     private Conductor conductor;
     private Duration conexion, presencia, tareasAux;
     private LocalDate dia;
     private double facturacion;
     private static Map<YearMonth, Duration> historial_tareas_aux = new TreeMap<>();
 
-    public DiaConductor(Duration conexion, Duration presencia, double facturacion, LocalDate dia) {
+    // Constructor
+
+    public DiaConductor(Duration conexion, Duration presencia, double facturacion, LocalDate dia, Conductor conductor) {
         this.conexion = conexion;
         this.presencia = presencia;
+        this.conductor = conductor;
         YearMonth mes = YearMonth.from(dia);
         this.tareasAux = historial_tareas_aux.getOrDefault(mes, Duration.ZERO);
     }
 
-    public Duration getConexion() {
+    // Métodos
+
+	public Duration getConexion() {
         return conexion;
     }
 
