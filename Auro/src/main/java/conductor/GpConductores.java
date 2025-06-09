@@ -42,7 +42,7 @@ public class GpConductores {
 
     }
 
-    private void iniciarSesion_conductor(Scanner sc, Utilities u, Validador v) throws PinIncorrectoException{
+    private void iniciarSesion_conductor(Scanner sc, Utilities u, Validador v) {
         Conductor aIniciar = null;
         int intentos = 0;
         while (intentos < 4) { 
