@@ -15,6 +15,7 @@ import principal.Conductor;
 public class GpConductores {
 
     // protected Scanner sc = new Scanner(System.in);
+    protected MetodosConductor metodosConductor = new MetodosConductor();
     protected Conductor cuentaActiva = null;
     private List<Conductor> conductores = new ArrayList<>();
     protected MenuSesion menu = new MenuSesion();
@@ -27,6 +28,9 @@ public class GpConductores {
             switch (opcion) {
                 case 1:
                     iniciarSesion_conductor(sc, u, v);
+                    if (cuentaActiva != null) {
+                        opcionesConductor(sc, u, v);
+                    }
                     break;
                 case 2:
                     break;
@@ -42,32 +46,70 @@ public class GpConductores {
 
     }
 
+    public void opcionesConductor(Scanner sc, Utilities u, Validador v) {
+        do {
+            opcion = menu.opciones_Conductor(sc);
+            switch (opcion) {
+                case 1:
+                    opcion = menu.registrosDiarios_conductor(sc);
+                    switch (opcion) {
+                        case 1:
+                            metodosConductor.registrarJornada(sc, cuentaActiva, u, v);
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                            break;
+
+                        default:
+                            break;
+                    }
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    break;
+                default:
+                    break;
+            }
+        } while (opcion != 3);
+
+    }
+
     private void iniciarSesion_conductor(Scanner sc, Utilities u, Validador v) {
-        Conductor aIniciar = null;
         int intentos = 0;
-        while (intentos < 4) { 
+        while (intentos < 4) {
             try {
                 String nik = u.pedirString(sc, false, "Nik: ");
                 v.validarNik_loginEmpleado(nik, conductores);
-                for(Conductor c : conductores){
-                    if(c.getNik().equals(nik)){
-                        aIniciar = c;
+                for (Conductor c : conductores) {
+                    if (c.getNik().equals(nik)) {
+                        String pin = u.pedirString(sc, false, "Pin: ");
+                        v.validarPin(pin);
+                        v.validarPin_loginEmpleado(pin, c);
+                        cuentaActiva = c;
                         break;
                     }
                 }
-                String pin = u.pedirString(sc, false, "Pin: ");
-                v.validarPin(pin);
-                v.validarPin_loginEmpleado(pin, aIniciar);
-                cuentaActiva = aIniciar;
-                break;
             } catch (NikNoEncontradoException | PinInvalidoException | PinIncorrectoException e) {
                 System.out.println("Error: " + e.getMessage());
+                cuentaActiva = null;
                 intentos++;
-            } 
+            }
         }
-        if(cuentaActiva != null){
+        if (cuentaActiva != null) {
             System.out.println("Sesión iniciada correctamente.");
-        }else{
+        } else {
             System.out.println("Superado el número de intentos. Sesión no iniciada.");
         }
     }
