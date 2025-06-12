@@ -1,13 +1,7 @@
 package principal;
 
-import java.util.Scanner;
-
-import conductor.GpConductores;
-import gestor.GpGestores;
 import interfazGrafica.VentanaArea;
-import lecturaEscritura.MenuSesion;
-import lecturaEscritura.Utilities;
-import lecturaEscritura.Validador;
+
 
 public class Main {
 
